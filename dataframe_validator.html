@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module dataframe_validator</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dataframe_validator</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cuser%5Cdesktop%5Cwork%5Cforex%5Cdataframe_validator.py">c:\users\user\desktop\work\forex\dataframe_validator.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="numpy.html">numpy</a><br>
+</td><td width="25%" valign=top><a href="pandas.html">pandas</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#ee77aa"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a href="builtins.html#BaseException">builtins.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dataframe_validator.html#DuplicateValueError">DuplicateValueError</a>
+</font></dt><dt><font face="helvetica, arial"><a href="dataframe_validator.html#MissingValueError">MissingValueError</a>
+</font></dt></dl>
+</dd>
+<dt><font face="helvetica, arial"><a href="builtins.html#object">builtins.object</a>
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="dataframe_validator.html#DataFrameValidator">DataFrameValidator</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DataFrameValidator">class <strong>DataFrameValidator</strong></a>(<a href="builtins.html#object">builtins.object</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#DataFrameValidator">DataFrameValidator</a>(dataframe:&nbsp;pandas.core.frame.DataFrame)&nbsp;-&amp;gt;&nbsp;None<br>
+&nbsp;<br>
+A&nbsp;class&nbsp;to&nbsp;validate&nbsp;a&nbsp;pandas&nbsp;DataFrame&nbsp;for&nbsp;missing&nbsp;and&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Attributes:<br>
+----------<br>
+dataframe&nbsp;:&nbsp;pd.DataFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;DataFrame&nbsp;to&nbsp;be&nbsp;validated.<br>
+__missing_indices&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Indices&nbsp;of&nbsp;rows&nbsp;with&nbsp;missing&nbsp;'Local&nbsp;time'&nbsp;values.<br>
+__duplicate_indices&nbsp;:&nbsp;list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Indices&nbsp;of&nbsp;rows&nbsp;with&nbsp;duplicate&nbsp;'Local&nbsp;time'&nbsp;values.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%">Methods defined here:<br>
+<dl><dt><a name="DataFrameValidator-__init__"><strong>__init__</strong></a>(self, dataframe: pandas.core.frame.DataFrame) -&gt; None</dt><dd><tt>Initializes&nbsp;the&nbsp;<a href="#DataFrameValidator">DataFrameValidator</a>&nbsp;with&nbsp;a&nbsp;DataFrame&nbsp;and&nbsp;initializes&nbsp;lists&nbsp;for&nbsp;missing&nbsp;and&nbsp;duplicate&nbsp;indices.<br>
+&nbsp;<br>
+Parameters:<br>
+----------<br>
+dataframe&nbsp;:&nbsp;pd.DataFrame<br>
+&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;DataFrame&nbsp;to&nbsp;be&nbsp;validated.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-calculate_timeframe"><strong>calculate_timeframe</strong></a>(self)</dt><dd><tt>Calculate&nbsp;the&nbsp;time&nbsp;interval&nbsp;between&nbsp;consecutive&nbsp;rows&nbsp;in&nbsp;a&nbsp;DataFrame.<br>
+&nbsp;<br>
+This&nbsp;function&nbsp;parses&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column&nbsp;into&nbsp;datetime&nbsp;objects,&nbsp;<br>
+calculates&nbsp;the&nbsp;time&nbsp;difference&nbsp;between&nbsp;the&nbsp;first&nbsp;two&nbsp;rows,&nbsp;and&nbsp;returns&nbsp;<br>
+the&nbsp;interval&nbsp;in&nbsp;a&nbsp;human-readable&nbsp;format&nbsp;showing&nbsp;hours,&nbsp;minutes,&nbsp;and&nbsp;seconds.<br>
+&nbsp;<br>
+Returns:<br>
+str:&nbsp;The&nbsp;time&nbsp;difference&nbsp;between&nbsp;consecutive&nbsp;rows&nbsp;formatted&nbsp;as&nbsp;'X&nbsp;hours,&nbsp;Y&nbsp;minutes,&nbsp;and&nbsp;Z&nbsp;seconds'.<br>
+&nbsp;<br>
+Example:<br>
+&gt;&gt;&gt;&nbsp;data&nbsp;=&nbsp;{<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Local&nbsp;time':&nbsp;[<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:00:00.000&nbsp;GMT+0330',<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:01:00.000&nbsp;GMT+0330',<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:02:00.000&nbsp;GMT+0330',<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:03:00.000&nbsp;GMT+0330',<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:04:00.000&nbsp;GMT+0330'<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Open':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'High':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Low':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Close':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Volume':&nbsp;[0.01,&nbsp;0.02,&nbsp;0.03,&nbsp;0.04,&nbsp;0.05]<br>
+&gt;&gt;&gt;&nbsp;}<br>
+&gt;&gt;&gt;&nbsp;validator&nbsp;=&nbsp;DataframeValidator(data)<br>
+&gt;&gt;&gt;&nbsp;validator.<a href="#DataFrameValidator-calculate_timeframe">calculate_timeframe</a>()<br>
+'0&nbsp;hours,&nbsp;1&nbsp;minutes,&nbsp;0&nbsp;seconds'</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-find_duplicate_values"><strong>find_duplicate_values</strong></a>(self) -&gt; bool</dt><dd><tt>Finds&nbsp;and&nbsp;records&nbsp;indices&nbsp;of&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;duplicate&nbsp;values,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-find_missing_values"><strong>find_missing_values</strong></a>(self) -&gt; bool</dt><dd><tt>Finds&nbsp;and&nbsp;records&nbsp;indices&nbsp;of&nbsp;missing&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;missing&nbsp;values,&nbsp;False&nbsp;otherwise.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-get_duplicate_indices"><strong>get_duplicate_indices</strong></a>(self) -&gt; list</dt><dd><tt>Returns&nbsp;the&nbsp;indices&nbsp;of&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Indices&nbsp;of&nbsp;duplicate&nbsp;values.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-get_missing_indices"><strong>get_missing_indices</strong></a>(self) -&gt; list</dt><dd><tt>Returns&nbsp;the&nbsp;indices&nbsp;of&nbsp;missing&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+list<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Indices&nbsp;of&nbsp;missing&nbsp;values.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-is_valid"><strong>is_valid</strong></a>(self) -&gt; bool</dt><dd><tt>Checks&nbsp;for&nbsp;missing&nbsp;and&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
+&nbsp;<br>
+Raises:<br>
+------<br>
+<a href="#MissingValueError">MissingValueError</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;missing&nbsp;values&nbsp;are&nbsp;found.<br>
+<a href="#DuplicateValueError">DuplicateValueError</a><br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;duplicate&nbsp;values&nbsp;are&nbsp;found.<br>
+&nbsp;<br>
+Returns:<br>
+-------<br>
+bool<br>
+&nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;missing&nbsp;or&nbsp;duplicate&nbsp;values.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="DuplicateValueError">class <strong>DuplicateValueError</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#DuplicateValueError">DuplicateValueError</a>(message:&nbsp;str&nbsp;=&nbsp;'Duplicate&nbsp;values&nbsp;found')<br>
+&nbsp;<br>
+<a href="builtins.html#Exception">Exception</a>&nbsp;raised&nbsp;for&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;dataframe.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="dataframe_validator.html#DuplicateValueError">DuplicateValueError</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="DuplicateValueError-__init__"><strong>__init__</strong></a>(self, message: str = 'Duplicate values found')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="DuplicateValueError-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="DuplicateValueError-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-__reduce__"><strong>__reduce__</strong></a>(...)</dt><dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="DuplicateValueError-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="DuplicateValueError-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#DuplicateValueError-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table> <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="MissingValueError">class <strong>MissingValueError</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+    
+<tr bgcolor="#ffc8d8"><td rowspan=2><tt>&nbsp;&nbsp;&nbsp;</tt></td>
+<td colspan=2><tt><a href="#MissingValueError">MissingValueError</a>(message:&nbsp;str&nbsp;=&nbsp;'Missing&nbsp;values&nbsp;found')<br>
+&nbsp;<br>
+<a href="builtins.html#Exception">Exception</a>&nbsp;raised&nbsp;for&nbsp;missing&nbsp;values&nbsp;in&nbsp;the&nbsp;dataframe.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%"><dl><dt>Method resolution order:</dt>
+<dd><a href="dataframe_validator.html#MissingValueError">MissingValueError</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="MissingValueError-__init__"><strong>__init__</strong></a>(self, message: str = 'Missing values found')</dt><dd><tt>Initialize&nbsp;self.&nbsp;&nbsp;See&nbsp;help(type(self))&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="MissingValueError-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;<a href="builtins.html#object">object</a>.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="MissingValueError-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-__reduce__"><strong>__reduce__</strong></a>(...)</dt><dd><tt>Helper&nbsp;for&nbsp;pickle.</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="MissingValueError-__str__"><strong>__str__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;str(self).</tt></dd></dl>
+
+<dl><dt><a name="MissingValueError-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#MissingValueError-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table></td></tr></table>
+</body></html>
