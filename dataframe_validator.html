@@ -8,7 +8,7 @@
 <td valign=bottom>&nbsp;<br>
 <font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>dataframe_validator</strong></big></big></font></td
 ><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cuser%5Cdesktop%5Cwork%5Cforex%5Cdataframe_validator.py">c:\users\user\desktop\work\forex\dataframe_validator.py</a></font></td></tr></table>
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:c%3A%5Cusers%5Cuser%5Cdesktop%5Cwork%5Cforex%5Cvalidator%5Cdataframe_validator.py">c:\users\user\desktop\work\forex\validator\dataframe_validator.py</a></font></td></tr></table>
     <p></p>
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
@@ -79,23 +79,54 @@ Returns:<br>
 str:&nbsp;The&nbsp;time&nbsp;difference&nbsp;between&nbsp;consecutive&nbsp;rows&nbsp;formatted&nbsp;as&nbsp;'X&nbsp;hours,&nbsp;Y&nbsp;minutes,&nbsp;and&nbsp;Z&nbsp;seconds'.<br>
 &nbsp;<br>
 Example:<br>
-&gt;&gt;&gt;&nbsp;data&nbsp;=&nbsp;{<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Local&nbsp;time':&nbsp;[<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:00:00.000&nbsp;GMT+0330',<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:01:00.000&nbsp;GMT+0330',<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:02:00.000&nbsp;GMT+0330',<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:03:00.000&nbsp;GMT+0330',<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:04:00.000&nbsp;GMT+0330'<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;],<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Open':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'High':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Low':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Close':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
-&gt;&gt;&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Volume':&nbsp;[0.01,&nbsp;0.02,&nbsp;0.03,&nbsp;0.04,&nbsp;0.05]<br>
-&gt;&gt;&gt;&nbsp;}<br>
-&gt;&gt;&gt;&nbsp;validator&nbsp;=&nbsp;DataframeValidator(data)<br>
-&gt;&gt;&gt;&nbsp;validator.<a href="#DataFrameValidator-calculate_timeframe">calculate_timeframe</a>()<br>
+data&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Local&nbsp;time':&nbsp;[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:00:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:01:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:02:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:03:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:04:00.000&nbsp;GMT+0330'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Open':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'High':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Low':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Close':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Volume':&nbsp;[0.01,&nbsp;0.02,&nbsp;0.03,&nbsp;0.04,&nbsp;0.05]<br>
+}<br>
+validator&nbsp;=&nbsp;DataframeValidator(data)<br>
+validator.<a href="#DataFrameValidator-calculate_timeframe">calculate_timeframe</a>()<br>
 '0&nbsp;hours,&nbsp;1&nbsp;minutes,&nbsp;0&nbsp;seconds'</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-fill_missings"><strong>fill_missings</strong></a>(self) -&gt; None</dt><dd><tt>Fills&nbsp;missing&nbsp;'Local&nbsp;time'&nbsp;values&nbsp;with&nbsp;a&nbsp;continuous&nbsp;time&nbsp;series.<br>
+&nbsp;<br>
+This&nbsp;method&nbsp;generates&nbsp;a&nbsp;new&nbsp;'Local&nbsp;time'&nbsp;series&nbsp;based&nbsp;on&nbsp;the&nbsp;first&nbsp;valid&nbsp;time&nbsp;and&nbsp;the&nbsp;detected&nbsp;time&nbsp;interval,<br>
+then&nbsp;replaces&nbsp;the&nbsp;existing&nbsp;'Local&nbsp;time'&nbsp;column&nbsp;with&nbsp;this&nbsp;continuous&nbsp;series.<br>
+&nbsp;<br>
+Raises:<br>
+-------<br>
+ValueError<br>
+&nbsp;&nbsp;&nbsp;&nbsp;If&nbsp;the&nbsp;detected&nbsp;time&nbsp;interval&nbsp;is&nbsp;unsupported.<br>
+&nbsp;<br>
+Example:<br>
+--------<br>
+data&nbsp;=&nbsp;{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Local&nbsp;time':&nbsp;[<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:00:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:02:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:03:00.000&nbsp;GMT+0330',<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'01.01.2023&nbsp;00:04:00.000&nbsp;GMT+0330'<br>
+&nbsp;&nbsp;&nbsp;&nbsp;],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Open':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'High':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Low':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Close':&nbsp;[1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711,&nbsp;1.0711],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;'Volume':&nbsp;[0.01,&nbsp;0.02,&nbsp;0.03,&nbsp;0.04,&nbsp;0.05]<br>
+}<br>
+validator&nbsp;=&nbsp;<a href="#DataFrameValidator">DataFrameValidator</a>(pd.DataFrame(data))<br>
+validator.<a href="#DataFrameValidator-calculate_timeframe">calculate_timeframe</a>()<br>
+'0&nbsp;hours,&nbsp;1&nbsp;minutes,&nbsp;0&nbsp;seconds'<br>
+validator.remove_missings()</tt></dd></dl>
 
 <dl><dt><a name="DataFrameValidator-find_duplicate_values"><strong>find_duplicate_values</strong></a>(self) -&gt; bool</dt><dd><tt>Finds&nbsp;and&nbsp;records&nbsp;indices&nbsp;of&nbsp;duplicate&nbsp;values&nbsp;in&nbsp;the&nbsp;'Local&nbsp;time'&nbsp;column.<br>
 &nbsp;<br>
@@ -139,6 +170,13 @@ Returns:<br>
 bool<br>
 &nbsp;&nbsp;&nbsp;&nbsp;True&nbsp;if&nbsp;there&nbsp;are&nbsp;no&nbsp;missing&nbsp;or&nbsp;duplicate&nbsp;values.</tt></dd></dl>
 
+<dl><dt><a name="DataFrameValidator-remove_duplicates"><strong>remove_duplicates</strong></a>(self) -&gt; None</dt><dd><tt>Removes&nbsp;duplicate&nbsp;rows&nbsp;in&nbsp;the&nbsp;DataFrame,&nbsp;keeping&nbsp;the&nbsp;first&nbsp;occurrence.</tt></dd></dl>
+
+<dl><dt><a name="DataFrameValidator-return_clean_data"><strong>return_clean_data</strong></a>(self) -&gt; pandas.core.frame.DataFrame</dt><dd><tt>returns&nbsp;the&nbsp;dataframe&nbsp;after&nbsp;going&nbsp;through&nbsp;preprocessing&nbsp;steps:&nbsp;handling&nbsp;duplication&nbsp;and&nbsp;missing&nbsp;values&nbsp;<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;pd.DataFrame:&nbsp;the&nbsp;preprocessed&nbsp;dataframe</tt></dd></dl>
+
 <hr>
 Data descriptors defined here:<br>
 <dl><dt><strong>__dict__</strong></dt>
@@ -147,6 +185,10 @@ Data descriptors defined here:<br>
 <dl><dt><strong>__weakref__</strong></dt>
 <dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
 </dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>time_intervals</strong> = {1: '1s', 30: '30s', 60: '1min', 300: '5min', 600: '10min', 900: '15min', 3600: '1h', 7200: '2h', 14400: '4h', 21600: '6h', ...}</dl>
+
 </td></tr></table> <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
 <tr bgcolor="#ffc8d8">
