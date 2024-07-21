@@ -199,7 +199,7 @@ class DataFrameValidator:
 
 
 
-    def remove_missings(self) -> None:
+    def fill_missings(self) -> None:
         """
             Fills missing 'Local time' values with a continuous time series.
 
@@ -253,3 +253,17 @@ class DataFrameValidator:
 
         # Replace the `Local time` column with the newly generated series
         self.dataframe['Local time'] = new_local_time_series
+        
+        
+    def return_clean_data(self) -> pd.DataFrame:
+        """
+        returns the dataframe after going through preprocessing steps: handling duplication and missing values 
+
+        Returns:
+            pd.DataFrame: the preprocessed dataframe 
+        """
+        self.find_duplicate_values()
+        self.find_missing_values()
+        self.remove_duplicates()
+        self.fill_missings()
+        return self.dataframe
