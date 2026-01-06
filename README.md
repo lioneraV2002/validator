@@ -1,4 +1,3 @@
-Here’s a clean and professional **README.md** written in a **standard documentation format** — suitable for GitHub or internal project repositories. It keeps a technical tone, explains purpose, usage, dependencies, and structure clearly.  
 
 ---
 
